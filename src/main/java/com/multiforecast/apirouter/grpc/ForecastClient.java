@@ -12,13 +12,14 @@ import org.lognet.springboot.grpc.GRpcService;
 public class ForecastClient {
 
     public Forecast getForecast(Long userId) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6565)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("forecastService", 6565)
                 .usePlaintext()
                 .build();
         final ForecastServiceGrpc.ForecastServiceBlockingStub forecastServiceClient = ForecastServiceGrpc.newBlockingStub(channel);
 
         ForecastResponse forecastResponse = forecastServiceClient.getForecast(ForecastRequest.newBuilder().setUserId(userId).build());
 
+        channel.shutdown();
         return new Forecast(forecastResponse.getForecast());
     }
 }
