@@ -11,6 +11,24 @@ message LocationResponse {
   float lon = 2;
 }
 
+message LocationSaveRequest {
+  int64 userId = 1;
+  string lat = 2;
+  string lon = 3;
+}
+
+message UserNotFoundError {
+  int64 userId = 1;
+}
+
+message Empty {
+
+}
+
 service LocationService {
   rpc getLocation(LocationRequest) returns (LocationResponse);
+}
+
+service UserService {
+  rpc saveLocation(LocationSaveRequest) returns (Empty);
 }

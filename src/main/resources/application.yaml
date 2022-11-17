@@ -1,0 +1,12 @@
+server:
+  port: '9095'
+grpc:
+  port: '6570'
+app:
+  grpc:
+    userService:
+      host: localhost
+      port: 6566
+    forecastService:
+      host: localhost
+      port: 6565
