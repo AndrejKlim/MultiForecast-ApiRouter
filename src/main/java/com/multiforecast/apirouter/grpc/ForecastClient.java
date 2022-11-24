@@ -45,6 +45,7 @@ public class ForecastClient {
         }
 
         channel.shutdown();
+        log.info("Returning Forecast response {}", forecastResponse.map(ForecastResponse::getForecast).orElse(null));
         return forecastResponse.map(r -> new Forecast(r.getForecast())).orElse(null);
     }
 }
